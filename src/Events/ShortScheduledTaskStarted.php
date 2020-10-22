@@ -6,9 +6,9 @@ use Symfony\Component\Process\Process;
 
 class ShortScheduledTaskStarted
 {
-    public string $command;
+    public $command;
 
-    public Process $process;
+    public $process;
 
     public function __construct(string $command, Process $process)
     {

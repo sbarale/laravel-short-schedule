@@ -6,22 +6,21 @@ use Closure;
 use Illuminate\Support\Arr;
 use Spatie\ShortSchedule\RunConstraints\BetweenConstraint;
 use Spatie\ShortSchedule\RunConstraints\EnvironmentConstraint;
-use Spatie\ShortSchedule\RunConstraints\RunConstraint;
 use Spatie\ShortSchedule\RunConstraints\WhenConstraint;
 
 class PendingShortScheduleCommand
 {
-    protected string $command = '';
+    protected $command = '';
 
-    protected float $frequencyInSeconds = 1;
+    protected $frequencyInSeconds = 1;
 
-    protected bool $allowOverlaps = true;
+    protected $allowOverlaps = true;
 
-    protected bool $onOneServer = false;
+    protected $onOneServer = false;
 
-    protected bool $evenInMaintenanceMode = false;
+    protected $evenInMaintenanceMode = false;
 
-    protected array $constraints = [];
+    protected $constraints = [];
 
     public function everySecond(float $frequencyInSeconds = 1): self
     {
@@ -35,7 +34,7 @@ class PendingShortScheduleCommand
         return $this;
     }
 
-    public function command(string $artisanCommand):self
+    public function command(string $artisanCommand): self
     {
         $this->command = "php artisan {$artisanCommand}";
 
@@ -67,10 +66,12 @@ class PendingShortScheduleCommand
     {
         $shouldNotRun = collect($this->constraints)
             ->contains(
-                fn (RunConstraint $runConstraint) => ! $runConstraint->shouldRun()
+                function ($runConstraint) {
+                    return !$runConstraint->shouldRun();
+                }
             );
 
-        return ! $shouldNotRun;
+        return !$shouldNotRun;
     }
 
     public function onOneServer(): self
@@ -115,6 +116,6 @@ class PendingShortScheduleCommand
 
     public function cacheName(): string
     {
-        return 'framework'.DIRECTORY_SEPARATOR.'schedule-'.sha1($this->frequencyInSeconds.$this->command);
+        return 'framework' . DIRECTORY_SEPARATOR . 'schedule-' . sha1($this->frequencyInSeconds . $this->command);
     }
 }

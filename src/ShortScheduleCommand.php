@@ -10,9 +10,9 @@ use Symfony\Component\Process\Process;
 
 class ShortScheduleCommand extends PendingShortScheduleCommand
 {
-    protected PendingShortScheduleCommand $pendingShortScheduleCommand;
+    protected  $pendingShortScheduleCommand;
 
-    protected ?Process $process = null;
+    protected  $process = null;
 
     public function __construct(PendingShortScheduleCommand $pendingShortScheduleCommand)
     {

@@ -11,9 +11,9 @@ class ShortSchedule
 {
     use Macroable;
 
-    protected LoopInterface $loop;
+    protected  $loop;
 
-    protected array $pendingCommands = [];
+    protected $pendingCommands = [];
 
     public function __construct(LoopInterface $loop)
     {
