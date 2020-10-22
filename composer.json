@@ -1,5 +1,5 @@
 {
-    "name": "spatie/laravel-short-schedule",
+    "name": "sbarale/laravel-short-schedule",
     "description": "Schedule artisan commands to run using a sub-minute frequency",
     "keywords": [
         "spatie",
@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.2",
         "illuminate/cache": "^7.0|^8.0",
         "react/event-loop": "^1.1",
         "spatie/temporary-directory": "^1.2"
